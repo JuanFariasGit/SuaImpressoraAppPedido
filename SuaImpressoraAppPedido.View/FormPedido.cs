@@ -24,5 +24,10 @@ namespace SuaImpressoraAppPedido.View
             FormProduto fp = new FormProduto(this);
             fp.ShowDialog();
         }
+
+        private void FormPedido_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

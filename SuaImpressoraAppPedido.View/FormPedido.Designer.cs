@@ -48,6 +48,7 @@ namespace SuaImpressoraAppPedido.View
             this.TbPontoDeReferencia = new System.Windows.Forms.TextBox();
             this.LwProdutos = new System.Windows.Forms.ListView();
             this.descricao = new System.Windows.Forms.ColumnHeader();
+            this.valorUni = new System.Windows.Forms.ColumnHeader();
             this.quantidade = new System.Windows.Forms.ColumnHeader();
             this.subtotal = new System.Windows.Forms.ColumnHeader();
             this.TbEmail = new System.Windows.Forms.TextBox();
@@ -204,12 +205,13 @@ namespace SuaImpressoraAppPedido.View
             // 
             this.LwProdutos.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.descricao,
+            this.valorUni,
             this.quantidade,
             this.subtotal});
             this.LwProdutos.HideSelection = false;
             this.LwProdutos.Location = new System.Drawing.Point(386, 256);
             this.LwProdutos.Name = "LwProdutos";
-            this.LwProdutos.Size = new System.Drawing.Size(371, 221);
+            this.LwProdutos.Size = new System.Drawing.Size(464, 221);
             this.LwProdutos.TabIndex = 18;
             this.LwProdutos.UseCompatibleStateImageBehavior = false;
             this.LwProdutos.View = System.Windows.Forms.View.Details;
@@ -218,6 +220,11 @@ namespace SuaImpressoraAppPedido.View
             // 
             this.descricao.Text = "DESCRIÇÃO";
             this.descricao.Width = 200;
+            // 
+            // valorUni
+            // 
+            this.valorUni.Text = "VALOR UNI";
+            this.valorUni.Width = 100;
             // 
             // quantidade
             // 
@@ -248,7 +255,7 @@ namespace SuaImpressoraAppPedido.View
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(658, 481);
+            this.label10.Location = new System.Drawing.Point(751, 481);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(62, 15);
             this.label10.TabIndex = 20;
@@ -257,16 +264,17 @@ namespace SuaImpressoraAppPedido.View
             // TbSubtotal01
             // 
             this.TbSubtotal01.Enabled = false;
-            this.TbSubtotal01.Location = new System.Drawing.Point(658, 499);
+            this.TbSubtotal01.Location = new System.Drawing.Point(751, 499);
             this.TbSubtotal01.Name = "TbSubtotal01";
             this.TbSubtotal01.Size = new System.Drawing.Size(100, 23);
             this.TbSubtotal01.TabIndex = 21;
+            this.TbSubtotal01.Text = "R$ 0,00";
             // 
             // FormPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 555);
+            this.ClientSize = new System.Drawing.Size(879, 555);
             this.Controls.Add(this.TbSubtotal01);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.BtAdicionar);
@@ -325,6 +333,7 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.ListView LwProdutos;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox TbSubtotal01;
+        private System.Windows.Forms.ColumnHeader valorUni;
     }
 }
 

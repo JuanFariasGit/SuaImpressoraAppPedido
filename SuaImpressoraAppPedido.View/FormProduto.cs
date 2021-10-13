@@ -16,20 +16,22 @@ namespace SuaImpressoraAppPedido.View
         {
             InitializeComponent();
             this.fp = fp;
+            this.Subtotal = double.Parse(fp.TbS01.Text.Split(" ")[1]);
         }
 
         private void BtSalvar_Click(object sender, EventArgs e)
         {
-            String[] items = new String[3];
+            String[] items = new String[4];
 
             items[0] = TbDescricao.Text.Trim();
-            items[1] = TbQuantidade.Text.Trim();
-            items[2] = "R$ " + (double.Parse(TbPrecoUnitario.Text) * int.Parse(TbQuantidade.Text)).ToString("N2");
+            items[1] = "R$ " + TbPrecoUnitario.Text.Trim();
+            items[2] = TbQuantidade.Text.Trim();
+            items[3] = "R$ " + (double.Parse(TbPrecoUnitario.Text) * int.Parse(TbQuantidade.Text)).ToString("N2");
 
             ListViewItem listViewItem = new ListViewItem(items);
             fp.LwP.Items.Add(listViewItem);
 
-            Subtotal += double.Parse(TbPrecoUnitario.Text) * int.Parse(TbQuantidade.Text);
+            this.Subtotal += double.Parse(TbPrecoUnitario.Text) * int.Parse(TbQuantidade.Text);
             fp.TbS01.Text = "R$ " + Subtotal.ToString("N2");
 
             LimparCampos();
