@@ -25,9 +25,11 @@ namespace SuaImpressoraAppPedido.View
             fp.ShowDialog();
         }
 
-        private void FormPedido_Load(object sender, EventArgs e)
+        private void BtRemover_Click(object sender, EventArgs e)
         {
-
+            double subtotal = double.Parse(TbSubtotal01.Text.Split(" ")[1]) - double.Parse(LwProdutos.SelectedItems[0].SubItems[3].Text.Split(" ")[1]);
+            LwProdutos.Items.RemoveAt(LwProdutos.SelectedIndices[0]);
+            TbSubtotal01.Text = "R$ " + subtotal.ToString("N2");
         }
     }
 }

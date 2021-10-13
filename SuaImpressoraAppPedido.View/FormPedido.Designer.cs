@@ -55,6 +55,7 @@ namespace SuaImpressoraAppPedido.View
             this.BtAdicionar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.TbSubtotal01 = new System.Windows.Forms.TextBox();
+            this.BtRemover = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -208,8 +209,10 @@ namespace SuaImpressoraAppPedido.View
             this.valorUni,
             this.quantidade,
             this.subtotal});
+            this.LwProdutos.FullRowSelect = true;
             this.LwProdutos.HideSelection = false;
             this.LwProdutos.Location = new System.Drawing.Point(386, 256);
+            this.LwProdutos.MultiSelect = false;
             this.LwProdutos.Name = "LwProdutos";
             this.LwProdutos.Size = new System.Drawing.Size(464, 221);
             this.LwProdutos.TabIndex = 18;
@@ -264,17 +267,29 @@ namespace SuaImpressoraAppPedido.View
             // TbSubtotal01
             // 
             this.TbSubtotal01.Enabled = false;
+            this.TbSubtotal01.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbSubtotal01.Location = new System.Drawing.Point(751, 499);
             this.TbSubtotal01.Name = "TbSubtotal01";
-            this.TbSubtotal01.Size = new System.Drawing.Size(100, 23);
+            this.TbSubtotal01.Size = new System.Drawing.Size(100, 32);
             this.TbSubtotal01.TabIndex = 21;
             this.TbSubtotal01.Text = "R$ 0,00";
+            // 
+            // BtRemover
+            // 
+            this.BtRemover.Location = new System.Drawing.Point(478, 227);
+            this.BtRemover.Name = "BtRemover";
+            this.BtRemover.Size = new System.Drawing.Size(86, 23);
+            this.BtRemover.TabIndex = 22;
+            this.BtRemover.Text = "REMOVER";
+            this.BtRemover.UseVisualStyleBackColor = true;
+            this.BtRemover.Click += new System.EventHandler(this.BtRemover_Click);
             // 
             // FormPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 555);
+            this.Controls.Add(this.BtRemover);
             this.Controls.Add(this.TbSubtotal01);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.BtAdicionar);
@@ -334,6 +349,7 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox TbSubtotal01;
         private System.Windows.Forms.ColumnHeader valorUni;
+        private System.Windows.Forms.Button BtRemover;
     }
 }
 
