@@ -54,8 +54,12 @@ namespace SuaImpressoraAppPedido.View
             this.TbEmail = new System.Windows.Forms.TextBox();
             this.BtAdicionar = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
-            this.TbSubtotal01 = new System.Windows.Forms.TextBox();
+            this.TbTotal = new System.Windows.Forms.TextBox();
             this.BtRemover = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.TbCupom = new System.Windows.Forms.TextBox();
+            this.TbFrete = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -258,21 +262,21 @@ namespace SuaImpressoraAppPedido.View
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(751, 481);
+            this.label10.Location = new System.Drawing.Point(749, 478);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(62, 15);
+            this.label10.Size = new System.Drawing.Size(42, 15);
             this.label10.TabIndex = 20;
-            this.label10.Text = "SUBTOTAL:";
+            this.label10.Text = "TOTAL:";
             // 
-            // TbSubtotal01
+            // TbTotal
             // 
-            this.TbSubtotal01.Enabled = false;
-            this.TbSubtotal01.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.TbSubtotal01.Location = new System.Drawing.Point(751, 499);
-            this.TbSubtotal01.Name = "TbSubtotal01";
-            this.TbSubtotal01.Size = new System.Drawing.Size(100, 32);
-            this.TbSubtotal01.TabIndex = 21;
-            this.TbSubtotal01.Text = "R$ 0,00";
+            this.TbTotal.Enabled = false;
+            this.TbTotal.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TbTotal.Location = new System.Drawing.Point(751, 496);
+            this.TbTotal.Name = "TbTotal";
+            this.TbTotal.Size = new System.Drawing.Size(100, 32);
+            this.TbTotal.TabIndex = 21;
+            this.TbTotal.Text = "R$ 0,00";
             // 
             // BtRemover
             // 
@@ -284,13 +288,55 @@ namespace SuaImpressoraAppPedido.View
             this.BtRemover.UseVisualStyleBackColor = true;
             this.BtRemover.Click += new System.EventHandler(this.BtRemover_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(645, 478);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(65, 15);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "FRETE (R$):";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(539, 478);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(74, 15);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "CUPOM (%):";
+            // 
+            // TbCupom
+            // 
+            this.TbCupom.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TbCupom.Location = new System.Drawing.Point(539, 496);
+            this.TbCupom.Name = "TbCupom";
+            this.TbCupom.PlaceholderText = "0,00";
+            this.TbCupom.Size = new System.Drawing.Size(100, 32);
+            this.TbCupom.TabIndex = 26;
+            this.TbCupom.TextChanged += new System.EventHandler(this.TbCupom_TextChanged);
+            // 
+            // TbFrete
+            // 
+            this.TbFrete.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TbFrete.Location = new System.Drawing.Point(645, 496);
+            this.TbFrete.Name = "TbFrete";
+            this.TbFrete.PlaceholderText = "0,00";
+            this.TbFrete.Size = new System.Drawing.Size(100, 32);
+            this.TbFrete.TabIndex = 24;
+            this.TbFrete.TextChanged += new System.EventHandler(this.TbFrete_TextChanged);
+            // 
             // FormPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(879, 555);
+            this.Controls.Add(this.TbCupom);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.TbFrete);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.BtRemover);
-            this.Controls.Add(this.TbSubtotal01);
+            this.Controls.Add(this.TbTotal);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.BtAdicionar);
             this.Controls.Add(this.TbEmail);
@@ -347,9 +393,13 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.Button BtAdicionar;
         private System.Windows.Forms.ListView LwProdutos;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox TbSubtotal01;
+        private System.Windows.Forms.TextBox TbTotal;
         private System.Windows.Forms.ColumnHeader valorUni;
         private System.Windows.Forms.Button BtRemover;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox TbCupom;
+        private System.Windows.Forms.TextBox TbFrete;
     }
 }
 

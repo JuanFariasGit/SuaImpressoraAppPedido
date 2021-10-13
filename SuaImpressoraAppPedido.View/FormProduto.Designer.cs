@@ -75,9 +75,9 @@ namespace SuaImpressoraAppPedido.View
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(194, 59);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(102, 15);
+            this.label3.Size = new System.Drawing.Size(126, 15);
             this.label3.TabIndex = 4;
-            this.label3.Text = "PREÇO UNITÁRIO:";
+            this.label3.Text = "PREÇO UNITÁRIO (R$):";
             // 
             // TbPrecoUnitario
             // 

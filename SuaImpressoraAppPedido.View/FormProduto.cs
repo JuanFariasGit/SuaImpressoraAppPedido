@@ -11,12 +11,10 @@ namespace SuaImpressoraAppPedido.View
     public partial class FormProduto : Form
     {
         private FormPedido fp;
-        private double Subtotal;
         public FormProduto(FormPedido fp)
         {
             InitializeComponent();
             this.fp = fp;
-            this.Subtotal = double.Parse(fp.TbS01.Text.Split(" ")[1]);
         }
 
         private void BtSalvar_Click(object sender, EventArgs e)
@@ -30,9 +28,7 @@ namespace SuaImpressoraAppPedido.View
 
             ListViewItem listViewItem = new ListViewItem(items);
             fp.LwP.Items.Add(listViewItem);
-
-            this.Subtotal += double.Parse(TbPrecoUnitario.Text) * int.Parse(TbQuantidade.Text);
-            fp.TbS01.Text = "R$ " + Subtotal.ToString("N2");
+            fp.AtualizarTotal();
 
             LimparCampos();
         }
