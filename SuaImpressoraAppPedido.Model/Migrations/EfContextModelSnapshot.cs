@@ -57,6 +57,9 @@ namespace SuaImpressoraAppPedido.Model.Migrations
                     b.Property<double>("Total")
                         .HasColumnType("REAL");
 
+                    b.Property<double>("Troco")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Whatsapp")
                         .HasColumnType("TEXT");
 

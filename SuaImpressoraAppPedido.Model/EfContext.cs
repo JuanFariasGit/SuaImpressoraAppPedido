@@ -11,7 +11,7 @@ namespace SuaImpressoraAppPedido.Model
         public DbSet<PedidoItem> PedidoItems { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder dbContextOptionsBuilder)
         {
-            dbContextOptionsBuilder.UseSqlite("Data Source=Banco.db");
+            dbContextOptionsBuilder.UseSqlite("Data Source=SuaImpressoraAppPedido.db");
         }
     }
 }

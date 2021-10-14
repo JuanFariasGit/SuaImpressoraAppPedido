@@ -15,11 +15,12 @@ namespace SuaImpressoraAppPedido.Model
         public string Email { get; set; }
         public string EnderecoDeEntrega { get; set; }
         public string PontoDeReferencia { get; set; }
+        public string Observacao { get; set; }
         public double Cupom { get; set; }
         public double Frete { get; set; }
         public double Total { get; set; }
-        public string Observacao { get; set; }
+        public double Troco { get; set; }
         public TipoPagamento TipoPagamento { get; set; }
-        public ICollection<PedidoItem> PedidoItems { get; set; }
+        public List<PedidoItem> PedidoItems { get; set; }
     }
 }

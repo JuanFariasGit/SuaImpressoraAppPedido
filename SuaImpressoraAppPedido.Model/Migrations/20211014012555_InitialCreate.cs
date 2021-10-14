@@ -20,10 +20,11 @@ namespace SuaImpressoraAppPedido.Model.Migrations
                     Email = table.Column<string>(type: "TEXT", nullable: true),
                     EnderecoDeEntrega = table.Column<string>(type: "TEXT", nullable: true),
                     PontoDeReferencia = table.Column<string>(type: "TEXT", nullable: true),
+                    Observacao = table.Column<string>(type: "TEXT", nullable: true),
                     Cupom = table.Column<double>(type: "REAL", nullable: false),
                     Frete = table.Column<double>(type: "REAL", nullable: false),
                     Total = table.Column<double>(type: "REAL", nullable: false),
-                    Observacao = table.Column<string>(type: "TEXT", nullable: true),
+                    Troco = table.Column<double>(type: "REAL", nullable: false),
                     TipoPagamento = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>

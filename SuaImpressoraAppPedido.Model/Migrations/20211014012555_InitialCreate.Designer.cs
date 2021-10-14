@@ -8,7 +8,7 @@ using SuaImpressoraAppPedido.Model;
 namespace SuaImpressoraAppPedido.Model.Migrations
 {
     [DbContext(typeof(EfContext))]
-    [Migration("20211011203701_InitialCreate")]
+    [Migration("20211014012555_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,6 +57,9 @@ namespace SuaImpressoraAppPedido.Model.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<double>("Total")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Troco")
                         .HasColumnType("REAL");
 
                     b.Property<string>("Whatsapp")

@@ -4,8 +4,8 @@ namespace SuaImpressoraAppPedido.Enum
 {
     public enum TipoPagamento
     {
-        Pix = 1,
-        Dinheiro = 2,
-        Cartao = 3
+        PIX = 1,
+        DINHEIRO = 2,
+        CARTAO = 3
     }
 }
