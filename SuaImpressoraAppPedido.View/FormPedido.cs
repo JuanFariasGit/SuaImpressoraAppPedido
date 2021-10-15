@@ -29,6 +29,7 @@ namespace SuaImpressoraAppPedido.View
         {
             using (EfContext contexto = new EfContext())
             {
+                LwPedidos.Items.Clear();
                 foreach (Pedido pedido in contexto.Pedidos)
                 {
                     String[] items = new String[6];
@@ -127,7 +128,18 @@ namespace SuaImpressoraAppPedido.View
                 };
 
                 contexto.Pedidos.Add(pedido);
-                contexto.SaveChanges();
+
+                try
+                {
+                    contexto.SaveChanges();
+                    AdicionarDadosNaListaPedidos();
+                    LimparCampos();
+                    MessageBox.Show("Pedido adicionado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                } 
             }
         }
 
@@ -144,40 +156,82 @@ namespace SuaImpressoraAppPedido.View
 
         private void LwPedidos_SelectedIndexChanged(object sender, EventArgs e)
         {
-            long id = int.Parse(LwPedidos.Items[0].SubItems[0].Text);
-            using (EfContext contexto = new EfContext())
+            if (LwPedidos.SelectedItems.Count > 0)
             {
-                Pedido pedido = contexto.Pedidos.Find(id);
-                TbNumeroPedido.Text = pedido.Id.ToString();
-                MkDataPedido.Text = pedido.DataDoPedido.ToString();
-                MkDataEntrega.Text = pedido.DataDeEntrega.ToString();
-                TbCliente.Text = pedido.Cliente.ToString();
-                MkWhatsapp.Text = pedido.Whatsapp.ToString();
-                TbInstagram.Text = pedido.Instagram.ToString();
-                TbEmail.Text = pedido.Email.ToString();
-                RtbEnderecoDeEntrega.Text = pedido.EnderecoDeEntrega;
-                TbPontoDeReferencia.Text = pedido.PontoDeReferencia;
-                RtbObservacaoDoPedido.Text = pedido.Observacao;
-
-                List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
-
-                foreach (PedidoItem item in pedidoItems)
+                LimparCampos();
+                long id = int.Parse(LwPedidos.SelectedItems[0].SubItems[0].Text);
+                using (EfContext contexto = new EfContext())
                 {
-                    String[] items = new String[4];
+                    Pedido pedido = contexto.Pedidos.Find(id);
+                    TbNumeroPedido.Text = pedido.Id.ToString();
+                    MkDataPedido.Text = pedido.DataDoPedido;
+                    MkDataEntrega.Text = pedido.DataDeEntrega;
+                    TbCliente.Text = pedido.Cliente;
+                    MkWhatsapp.Text = pedido.Whatsapp;
+                    TbInstagram.Text = pedido.Instagram;
+                    TbEmail.Text = pedido.Email;
+                    RtbEnderecoDeEntrega.Text = pedido.EnderecoDeEntrega;
+                    TbPontoDeReferencia.Text = pedido.PontoDeReferencia;
+                    RtbObservacaoDoPedido.Text = pedido.Observacao;
 
-                    items[0] = item.Descricao;
-                    items[1] = "R$ " + item.PrecoUnitario.ToString("N2");
-                    items[2] = item.Quantidade.ToString();
-                    items[3] = "R$ " + (double.Parse(item.PrecoUnitario.ToString()) * int.Parse(item.Quantidade.ToString())).ToString("N2");
+                    List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
 
-                    ListViewItem listViewItem = new ListViewItem(items);
-                    LwProdutos.Items.Add(listViewItem);
+                    foreach (PedidoItem item in pedidoItems)
+                    {
+                        String[] items = new String[4];
+
+                        items[0] = item.Descricao;
+                        items[1] = "R$ " + item.PrecoUnitario.ToString("N2");
+                        items[2] = item.Quantidade.ToString();
+                        items[3] = "R$ " + (double.Parse(item.PrecoUnitario.ToString()) * int.Parse(item.Quantidade.ToString())).ToString("N2");
+
+                        ListViewItem listViewItem = new ListViewItem(items);
+                        LwProdutos.Items.Add(listViewItem);
+                    }
+
+                    TbCupom.Text = pedido.Cupom.ToString("N2");
+                    TbFrete.Text = pedido.Frete.ToString("N2");
+                    TbTotal.Text = pedido.Total.ToString("N2");
+
+                    string tipoPagamento = pedido.TipoPagamento.ToString();
+                    if (tipoPagamento == "PIX")
+                    {
+                        RbPix.Checked = true;
+                    }
+                    else if (tipoPagamento == "DINHEIRO")
+                    {
+                        RbDinheiro.Checked = true;
+                    }
+                    else if (tipoPagamento == "CARTAO")
+                    {
+                        RbCartao.Checked = true;
+                    }
+
+                    TbTroco.Text = pedido.Troco.ToString("N2");
                 }
-
-                TbCupom.Text = pedido.Cupom.ToString("N2");
-                TbFrete.Text = pedido.Frete.ToString("N2");
-                TbTotal.Text = pedido.Total.ToString("N2");
             }
+        }
+
+        private void LimparCampos()
+        {
+            TbNumeroPedido.Clear();
+            MkDataPedido.Clear();
+            MkDataEntrega.Clear();
+            TbCliente.Clear();
+            MkWhatsapp.Clear();
+            TbInstagram.Clear();
+            TbEmail.Clear();
+            RtbEnderecoDeEntrega.Clear();
+            TbPontoDeReferencia.Clear();
+            RtbObservacaoDoPedido.Clear();
+            LwProdutos.Items.Clear();
+            TbCupom.Clear();
+            TbFrete.Clear();
+            TbTotal.Clear();
+            RbPix.Checked = false;
+            RbDinheiro.Checked = false;
+            RbCartao.Checked = false;
+            TbTroco.Clear();
         }
     }
 }

@@ -112,7 +112,6 @@ namespace SuaImpressoraAppPedido.View
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormProduto";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Produto";
             this.ResumeLayout(false);
             this.PerformLayout();
