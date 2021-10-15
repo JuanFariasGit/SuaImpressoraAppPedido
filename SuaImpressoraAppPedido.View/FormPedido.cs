@@ -21,7 +21,30 @@ namespace SuaImpressoraAppPedido.View
         {
             InitializeComponent();
         }
+        private void FormPedido_Load(object sender, EventArgs e)
+        {
+            AdicionarDadosNaListaPedidos();
+        }
+        private void AdicionarDadosNaListaPedidos()
+        {
+            using (EfContext contexto = new EfContext())
+            {
+                foreach (Pedido pedido in contexto.Pedidos)
+                {
+                    String[] items = new String[6];
 
+                    items[0] = pedido.Id.ToString();
+                    items[1] = pedido.DataDoPedido;
+                    items[2] = pedido.DataDeEntrega;
+                    items[3] = pedido.Cliente;
+                    items[4] = pedido.Whatsapp;
+                    items[5] = "R$ " + pedido.Total.ToString("N2");
+
+                    ListViewItem listViewItem = new ListViewItem(items);
+                    LwPedidos.Items.Add(listViewItem);
+                }
+            }
+        }
         public void AtualizarTotal()
         {
             double total = 0.00;
@@ -33,7 +56,8 @@ namespace SuaImpressoraAppPedido.View
                 total += double.Parse(item.SubItems[3].Text.Split(" ")[1]);
             }
 
-            total += frete - (cupom / 100) * total;
+            total += frete;
+            total -= (cupom / 100) * total;
             TbTotal.Text = total.ToString("N2");
         }
 
@@ -51,7 +75,8 @@ namespace SuaImpressoraAppPedido.View
 
         private void TbFrete_TextChanged(object sender, EventArgs e)
         {
-            if (Regex.IsMatch(TbFrete.Text, @"[0-9]") || TbFrete.Text.Trim().Equals("")) {
+            if (Regex.IsMatch(TbFrete.Text, @"[0-9]") || TbFrete.Text.Trim().Equals("")) 
+            {
                 AtualizarTotal();
             } 
         }
@@ -67,6 +92,9 @@ namespace SuaImpressoraAppPedido.View
         private void BtSalvar_Click(object sender, EventArgs e)
         {
             List<PedidoItem> pedidoItems = new List<PedidoItem>();
+            string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
+            int tipoPagemento = tipoPagamentoStr.Equals("PIX") ? 1 : tipoPagamentoStr.Equals("DINHEIRO") ? 2 : 3;
+
             foreach (ListViewItem item in LwProdutos.Items)
             {
                 pedidoItems.Add(new PedidoItem
@@ -94,12 +122,61 @@ namespace SuaImpressoraAppPedido.View
                     Frete = !String.IsNullOrEmpty(TbFrete.Text) ? double.Parse(TbFrete.Text) : 0.00,
                     Total = !String.IsNullOrEmpty(TbTotal.Text) ? double.Parse(TbTotal.Text) : 0.00,
                     Troco = !String.IsNullOrEmpty(TbTroco.Text) ? double.Parse(TbTroco.Text) : 0.00,
-                    TipoPagamento = TipoPagamento.PIX,
+                    TipoPagamento = (TipoPagamento)tipoPagemento,
                     PedidoItems = pedidoItems
                 };
 
                 contexto.Pedidos.Add(pedido);
                 contexto.SaveChanges();
+            }
+        }
+
+        private void RbDinheiro_CheckedChanged(object sender, EventArgs e)
+        {
+            TbTroco.Enabled = false;
+            TbTroco.Clear();
+        }
+
+        private void RbDinheiro_Click(object sender, EventArgs e)
+        {
+            TbTroco.Enabled = true;
+        }
+
+        private void LwPedidos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            long id = int.Parse(LwPedidos.Items[0].SubItems[0].Text);
+            using (EfContext contexto = new EfContext())
+            {
+                Pedido pedido = contexto.Pedidos.Find(id);
+                TbNumeroPedido.Text = pedido.Id.ToString();
+                MkDataPedido.Text = pedido.DataDoPedido.ToString();
+                MkDataEntrega.Text = pedido.DataDeEntrega.ToString();
+                TbCliente.Text = pedido.Cliente.ToString();
+                MkWhatsapp.Text = pedido.Whatsapp.ToString();
+                TbInstagram.Text = pedido.Instagram.ToString();
+                TbEmail.Text = pedido.Email.ToString();
+                RtbEnderecoDeEntrega.Text = pedido.EnderecoDeEntrega;
+                TbPontoDeReferencia.Text = pedido.PontoDeReferencia;
+                RtbObservacaoDoPedido.Text = pedido.Observacao;
+
+                List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
+
+                foreach (PedidoItem item in pedidoItems)
+                {
+                    String[] items = new String[4];
+
+                    items[0] = item.Descricao;
+                    items[1] = "R$ " + item.PrecoUnitario.ToString("N2");
+                    items[2] = item.Quantidade.ToString();
+                    items[3] = "R$ " + (double.Parse(item.PrecoUnitario.ToString()) * int.Parse(item.Quantidade.ToString())).ToString("N2");
+
+                    ListViewItem listViewItem = new ListViewItem(items);
+                    LwProdutos.Items.Add(listViewItem);
+                }
+
+                TbCupom.Text = pedido.Cupom.ToString("N2");
+                TbFrete.Text = pedido.Frete.ToString("N2");
+                TbTotal.Text = pedido.Total.ToString("N2");
             }
         }
     }
