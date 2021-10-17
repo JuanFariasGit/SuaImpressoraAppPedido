@@ -79,6 +79,10 @@ namespace SuaImpressoraAppPedido.View
             this.Whatsapp = new System.Windows.Forms.ColumnHeader();
             this.Total = new System.Windows.Forms.ColumnHeader();
             this.Dados = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.BtExcluir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.GbTipoPagamento.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Lista.SuspendLayout();
@@ -405,9 +409,9 @@ namespace SuaImpressoraAppPedido.View
             // 
             // BtSalvar
             // 
-            this.BtSalvar.Location = new System.Drawing.Point(877, 206);
+            this.BtSalvar.Location = new System.Drawing.Point(907, 207);
             this.BtSalvar.Name = "BtSalvar";
-            this.BtSalvar.Size = new System.Drawing.Size(111, 33);
+            this.BtSalvar.Size = new System.Drawing.Size(86, 23);
             this.BtSalvar.TabIndex = 33;
             this.BtSalvar.Text = "SALVAR";
             this.BtSalvar.UseVisualStyleBackColor = true;
@@ -515,6 +519,10 @@ namespace SuaImpressoraAppPedido.View
             // 
             // Dados
             // 
+            this.Dados.Controls.Add(this.button4);
+            this.Dados.Controls.Add(this.button3);
+            this.Dados.Controls.Add(this.BtExcluir);
+            this.Dados.Controls.Add(this.button1);
             this.Dados.Controls.Add(this.TbPontoDeReferencia);
             this.Dados.Controls.Add(this.GbTipoPagamento);
             this.Dados.Controls.Add(this.label1);
@@ -555,6 +563,43 @@ namespace SuaImpressoraAppPedido.View
             this.Dados.TabIndex = 0;
             this.Dados.Text = "Dados";
             this.Dados.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(907, 277);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(86, 23);
+            this.button4.TabIndex = 40;
+            this.button4.Text = "ADICIONAR";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(907, 304);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(86, 23);
+            this.button3.TabIndex = 39;
+            this.button3.Text = "ATUALIZAR";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // BtExcluir
+            // 
+            this.BtExcluir.Location = new System.Drawing.Point(907, 333);
+            this.BtExcluir.Name = "BtExcluir";
+            this.BtExcluir.Size = new System.Drawing.Size(86, 23);
+            this.BtExcluir.TabIndex = 38;
+            this.BtExcluir.Text = "EXCLUIR";
+            this.BtExcluir.UseVisualStyleBackColor = true;
+            this.BtExcluir.Click += new System.EventHandler(this.BtExcluir_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(907, 236);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(86, 23);
+            this.button1.TabIndex = 37;
+            this.button1.Text = "CANCELAR";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // FormPedido
             // 
@@ -630,6 +675,10 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.ColumnHeader Cliente;
         private System.Windows.Forms.ColumnHeader Whatsapp;
         private System.Windows.Forms.ColumnHeader Total;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button BtExcluir;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
     }
 }
 

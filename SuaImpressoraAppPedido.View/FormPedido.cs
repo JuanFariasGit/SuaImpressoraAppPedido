@@ -93,7 +93,7 @@ namespace SuaImpressoraAppPedido.View
         private void BtSalvar_Click(object sender, EventArgs e)
         {
             List<PedidoItem> pedidoItems = new List<PedidoItem>();
-            string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().SingleOrDefault(RadioButton => RadioButton.Checked).Text;
+            string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().SingleOrDefault(r => r.Checked).Text;
             int tipoPagemento = tipoPagamentoStr.Equals("PIX") ? 1 : tipoPagamentoStr.Equals("DINHEIRO") ? 2 : 3;
 
             foreach (ListViewItem item in LwProdutos.Items)
@@ -132,14 +132,17 @@ namespace SuaImpressoraAppPedido.View
                 try
                 {
                     contexto.SaveChanges();
-                    AdicionarDadosNaListaPedidos();
                     LimparCampos();
                     MessageBox.Show("Pedido adicionado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 } 
+                finally
+                {
+                    AdicionarDadosNaListaPedidos();
+                }
             }
         }
 
@@ -162,8 +165,8 @@ namespace SuaImpressoraAppPedido.View
                 long id = int.Parse(LwPedidos.SelectedItems[0].SubItems[0].Text);
                 using (EfContext contexto = new EfContext())
                 {
-                    Pedido pedido = contexto.Pedidos.Find(id);
-                    TbNumeroPedido.Text = pedido.Id.ToString();
+                    Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
+                    TbNumeroPedido.Text = id.ToString();
                     MkDataPedido.Text = pedido.DataDoPedido;
                     MkDataEntrega.Text = pedido.DataDeEntrega;
                     TbCliente.Text = pedido.Cliente;
@@ -208,6 +211,42 @@ namespace SuaImpressoraAppPedido.View
                     }
 
                     TbTroco.Text = pedido.Troco.ToString("N2");
+                }
+            }
+        }
+
+        private void BtExcluir_Click(object sender, EventArgs e)
+        {
+            DialogResult dialog = MessageBox.Show("Deseja realmente excluir", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialog == DialogResult.Yes) {
+                using (EfContext contexto = new EfContext())
+                {
+                    long id = long.Parse(TbNumeroPedido.Text);
+                    Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
+                    List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
+
+                    contexto.Pedidos.Remove(pedido);
+
+                    foreach (PedidoItem item in pedidoItems)
+                    {
+                        contexto.PedidoItems.Remove(item);
+                    }
+
+                    try
+                    {
+                        contexto.SaveChanges();
+                        LimparCampos();
+                        MessageBox.Show("Pedido excluido com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        AdicionarDadosNaListaPedidos();
+                    }
                 }
             }
         }
