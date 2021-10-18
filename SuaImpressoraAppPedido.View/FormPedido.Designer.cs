@@ -52,10 +52,10 @@ namespace SuaImpressoraAppPedido.View
             this.quantidade = new System.Windows.Forms.ColumnHeader();
             this.subtotal = new System.Windows.Forms.ColumnHeader();
             this.TbEmail = new System.Windows.Forms.TextBox();
-            this.BtAdicionar = new System.Windows.Forms.Button();
+            this.BtAdicionarProduto = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.TbTotal = new System.Windows.Forms.TextBox();
-            this.BtRemover = new System.Windows.Forms.Button();
+            this.BtExcluirProduto = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.TbCupom = new System.Windows.Forms.TextBox();
@@ -79,10 +79,11 @@ namespace SuaImpressoraAppPedido.View
             this.Whatsapp = new System.Windows.Forms.ColumnHeader();
             this.Total = new System.Windows.Forms.ColumnHeader();
             this.Dados = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.BtExcluir = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BtGerarPdf = new System.Windows.Forms.Button();
+            this.BtAdicionarPedido = new System.Windows.Forms.Button();
+            this.BtEditar = new System.Windows.Forms.Button();
+            this.BtExcluirPedido = new System.Windows.Forms.Button();
+            this.BtCancelar = new System.Windows.Forms.Button();
             this.GbTipoPagamento.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.Lista.SuspendLayout();
@@ -100,6 +101,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // MkDataPedido
             // 
+            this.MkDataPedido.Enabled = false;
             this.MkDataPedido.Location = new System.Drawing.Point(4, 72);
             this.MkDataPedido.Mask = "00/00/0000";
             this.MkDataPedido.Name = "MkDataPedido";
@@ -118,6 +120,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // MkDataEntrega
             // 
+            this.MkDataEntrega.Enabled = false;
             this.MkDataEntrega.Location = new System.Drawing.Point(4, 125);
             this.MkDataEntrega.Mask = "00/00/0000";
             this.MkDataEntrega.Name = "MkDataEntrega";
@@ -136,6 +139,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbCliente
             // 
+            this.TbCliente.Enabled = false;
             this.TbCliente.Location = new System.Drawing.Point(4, 174);
             this.TbCliente.Name = "TbCliente";
             this.TbCliente.Size = new System.Drawing.Size(331, 23);
@@ -152,6 +156,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // MkWhatsapp
             // 
+            this.MkWhatsapp.Enabled = false;
             this.MkWhatsapp.Location = new System.Drawing.Point(4, 224);
             this.MkWhatsapp.Mask = "(00) 9 0000-0000";
             this.MkWhatsapp.Name = "MkWhatsapp";
@@ -169,6 +174,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbInstagram
             // 
+            this.TbInstagram.Enabled = false;
             this.TbInstagram.Location = new System.Drawing.Point(4, 277);
             this.TbInstagram.Name = "TbInstagram";
             this.TbInstagram.Size = new System.Drawing.Size(167, 23);
@@ -194,6 +200,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // RtbEnderecoDeEntrega
             // 
+            this.RtbEnderecoDeEntrega.Enabled = false;
             this.RtbEnderecoDeEntrega.Location = new System.Drawing.Point(4, 384);
             this.RtbEnderecoDeEntrega.Name = "RtbEnderecoDeEntrega";
             this.RtbEnderecoDeEntrega.Size = new System.Drawing.Size(331, 96);
@@ -211,6 +218,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // RtbObservacaoDoPedido
             // 
+            this.RtbObservacaoDoPedido.Enabled = false;
             this.RtbObservacaoDoPedido.Location = new System.Drawing.Point(378, 83);
             this.RtbObservacaoDoPedido.Name = "RtbObservacaoDoPedido";
             this.RtbObservacaoDoPedido.Size = new System.Drawing.Size(331, 96);
@@ -228,6 +236,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbPontoDeReferencia
             // 
+            this.TbPontoDeReferencia.Enabled = false;
             this.TbPontoDeReferencia.Location = new System.Drawing.Point(378, 28);
             this.TbPontoDeReferencia.Name = "TbPontoDeReferencia";
             this.TbPontoDeReferencia.Size = new System.Drawing.Size(331, 23);
@@ -240,6 +249,7 @@ namespace SuaImpressoraAppPedido.View
             this.valorUni,
             this.quantidade,
             this.subtotal});
+            this.LwProdutos.Enabled = false;
             this.LwProdutos.FullRowSelect = true;
             this.LwProdutos.HideSelection = false;
             this.LwProdutos.Location = new System.Drawing.Point(378, 215);
@@ -271,20 +281,22 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbEmail
             // 
+            this.TbEmail.Enabled = false;
             this.TbEmail.Location = new System.Drawing.Point(4, 326);
             this.TbEmail.Name = "TbEmail";
             this.TbEmail.Size = new System.Drawing.Size(331, 23);
             this.TbEmail.TabIndex = 11;
             // 
-            // BtAdicionar
+            // BtAdicionarProduto
             // 
-            this.BtAdicionar.Location = new System.Drawing.Point(378, 186);
-            this.BtAdicionar.Name = "BtAdicionar";
-            this.BtAdicionar.Size = new System.Drawing.Size(86, 23);
-            this.BtAdicionar.TabIndex = 18;
-            this.BtAdicionar.Text = "ADICIONAR";
-            this.BtAdicionar.UseVisualStyleBackColor = true;
-            this.BtAdicionar.Click += new System.EventHandler(this.BtAdicionar_Click);
+            this.BtAdicionarProduto.Enabled = false;
+            this.BtAdicionarProduto.Location = new System.Drawing.Point(378, 186);
+            this.BtAdicionarProduto.Name = "BtAdicionarProduto";
+            this.BtAdicionarProduto.Size = new System.Drawing.Size(86, 23);
+            this.BtAdicionarProduto.TabIndex = 18;
+            this.BtAdicionarProduto.Text = "ADICIONAR";
+            this.BtAdicionarProduto.UseVisualStyleBackColor = true;
+            this.BtAdicionarProduto.Click += new System.EventHandler(this.BtAdicionarProduto_Click);
             // 
             // label10
             // 
@@ -301,19 +313,20 @@ namespace SuaImpressoraAppPedido.View
             this.TbTotal.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbTotal.Location = new System.Drawing.Point(743, 455);
             this.TbTotal.Name = "TbTotal";
+            this.TbTotal.PlaceholderText = "0,00";
             this.TbTotal.Size = new System.Drawing.Size(100, 32);
             this.TbTotal.TabIndex = 26;
-            this.TbTotal.Text = "0,00";
             // 
-            // BtRemover
+            // BtExcluirProduto
             // 
-            this.BtRemover.Location = new System.Drawing.Point(470, 186);
-            this.BtRemover.Name = "BtRemover";
-            this.BtRemover.Size = new System.Drawing.Size(86, 23);
-            this.BtRemover.TabIndex = 19;
-            this.BtRemover.Text = "REMOVER";
-            this.BtRemover.UseVisualStyleBackColor = true;
-            this.BtRemover.Click += new System.EventHandler(this.BtRemover_Click);
+            this.BtExcluirProduto.Enabled = false;
+            this.BtExcluirProduto.Location = new System.Drawing.Point(470, 186);
+            this.BtExcluirProduto.Name = "BtExcluirProduto";
+            this.BtExcluirProduto.Size = new System.Drawing.Size(86, 23);
+            this.BtExcluirProduto.TabIndex = 19;
+            this.BtExcluirProduto.Text = "EXCLUIR";
+            this.BtExcluirProduto.UseVisualStyleBackColor = true;
+            this.BtExcluirProduto.Click += new System.EventHandler(this.BtExcluirProduto_Click);
             // 
             // label11
             // 
@@ -335,6 +348,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbCupom
             // 
+            this.TbCupom.Enabled = false;
             this.TbCupom.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbCupom.Location = new System.Drawing.Point(531, 455);
             this.TbCupom.Name = "TbCupom";
@@ -345,6 +359,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbFrete
             // 
+            this.TbFrete.Enabled = false;
             this.TbFrete.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.TbFrete.Location = new System.Drawing.Point(637, 455);
             this.TbFrete.Name = "TbFrete";
@@ -356,6 +371,8 @@ namespace SuaImpressoraAppPedido.View
             // RbPix
             // 
             this.RbPix.AutoSize = true;
+            this.RbPix.Checked = true;
+            this.RbPix.Enabled = false;
             this.RbPix.Location = new System.Drawing.Point(15, 24);
             this.RbPix.Name = "RbPix";
             this.RbPix.Size = new System.Drawing.Size(42, 19);
@@ -367,11 +384,11 @@ namespace SuaImpressoraAppPedido.View
             // RbDinheiro
             // 
             this.RbDinheiro.AutoSize = true;
+            this.RbDinheiro.Enabled = false;
             this.RbDinheiro.Location = new System.Drawing.Point(15, 49);
             this.RbDinheiro.Name = "RbDinheiro";
             this.RbDinheiro.Size = new System.Drawing.Size(79, 19);
             this.RbDinheiro.TabIndex = 29;
-            this.RbDinheiro.TabStop = true;
             this.RbDinheiro.Text = "DINHEIRO";
             this.RbDinheiro.UseVisualStyleBackColor = true;
             this.RbDinheiro.CheckedChanged += new System.EventHandler(this.RbDinheiro_CheckedChanged);
@@ -380,11 +397,11 @@ namespace SuaImpressoraAppPedido.View
             // RbCartao
             // 
             this.RbCartao.AutoSize = true;
+            this.RbCartao.Enabled = false;
             this.RbCartao.Location = new System.Drawing.Point(15, 73);
             this.RbCartao.Name = "RbCartao";
             this.RbCartao.Size = new System.Drawing.Size(69, 19);
             this.RbCartao.TabIndex = 30;
-            this.RbCartao.TabStop = true;
             this.RbCartao.Text = "CARTÃO";
             this.RbCartao.UseVisualStyleBackColor = true;
             // 
@@ -409,6 +426,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // BtSalvar
             // 
+            this.BtSalvar.Enabled = false;
             this.BtSalvar.Location = new System.Drawing.Point(907, 207);
             this.BtSalvar.Name = "BtSalvar";
             this.BtSalvar.Size = new System.Drawing.Size(86, 23);
@@ -519,10 +537,11 @@ namespace SuaImpressoraAppPedido.View
             // 
             // Dados
             // 
-            this.Dados.Controls.Add(this.button4);
-            this.Dados.Controls.Add(this.button3);
-            this.Dados.Controls.Add(this.BtExcluir);
-            this.Dados.Controls.Add(this.button1);
+            this.Dados.Controls.Add(this.BtGerarPdf);
+            this.Dados.Controls.Add(this.BtAdicionarPedido);
+            this.Dados.Controls.Add(this.BtEditar);
+            this.Dados.Controls.Add(this.BtExcluirPedido);
+            this.Dados.Controls.Add(this.BtCancelar);
             this.Dados.Controls.Add(this.TbPontoDeReferencia);
             this.Dados.Controls.Add(this.GbTipoPagamento);
             this.Dados.Controls.Add(this.label1);
@@ -544,13 +563,13 @@ namespace SuaImpressoraAppPedido.View
             this.Dados.Controls.Add(this.label5);
             this.Dados.Controls.Add(this.label11);
             this.Dados.Controls.Add(this.TbInstagram);
-            this.Dados.Controls.Add(this.BtRemover);
+            this.Dados.Controls.Add(this.BtExcluirProduto);
             this.Dados.Controls.Add(this.label6);
             this.Dados.Controls.Add(this.TbTotal);
             this.Dados.Controls.Add(this.label7);
             this.Dados.Controls.Add(this.label10);
             this.Dados.Controls.Add(this.RtbEnderecoDeEntrega);
-            this.Dados.Controls.Add(this.BtAdicionar);
+            this.Dados.Controls.Add(this.BtAdicionarProduto);
             this.Dados.Controls.Add(this.label8);
             this.Dados.Controls.Add(this.TbEmail);
             this.Dados.Controls.Add(this.label9);
@@ -564,42 +583,54 @@ namespace SuaImpressoraAppPedido.View
             this.Dados.Text = "Dados";
             this.Dados.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // BtGerarPdf
             // 
-            this.button4.Location = new System.Drawing.Point(907, 277);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 23);
-            this.button4.TabIndex = 40;
-            this.button4.Text = "ADICIONAR";
-            this.button4.UseVisualStyleBackColor = true;
+            this.BtGerarPdf.Location = new System.Drawing.Point(907, 374);
+            this.BtGerarPdf.Name = "BtGerarPdf";
+            this.BtGerarPdf.Size = new System.Drawing.Size(86, 23);
+            this.BtGerarPdf.TabIndex = 41;
+            this.BtGerarPdf.Text = "GERAR PDF";
+            this.BtGerarPdf.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // BtAdicionarPedido
             // 
-            this.button3.Location = new System.Drawing.Point(907, 304);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(86, 23);
-            this.button3.TabIndex = 39;
-            this.button3.Text = "ATUALIZAR";
-            this.button3.UseVisualStyleBackColor = true;
+            this.BtAdicionarPedido.Location = new System.Drawing.Point(907, 277);
+            this.BtAdicionarPedido.Name = "BtAdicionarPedido";
+            this.BtAdicionarPedido.Size = new System.Drawing.Size(86, 23);
+            this.BtAdicionarPedido.TabIndex = 40;
+            this.BtAdicionarPedido.Text = "ADICIONAR";
+            this.BtAdicionarPedido.UseVisualStyleBackColor = true;
+            this.BtAdicionarPedido.Click += new System.EventHandler(this.BtAdicionarPedido_Click);
             // 
-            // BtExcluir
+            // BtEditar
             // 
-            this.BtExcluir.Location = new System.Drawing.Point(907, 333);
-            this.BtExcluir.Name = "BtExcluir";
-            this.BtExcluir.Size = new System.Drawing.Size(86, 23);
-            this.BtExcluir.TabIndex = 38;
-            this.BtExcluir.Text = "EXCLUIR";
-            this.BtExcluir.UseVisualStyleBackColor = true;
-            this.BtExcluir.Click += new System.EventHandler(this.BtExcluir_Click);
+            this.BtEditar.Location = new System.Drawing.Point(907, 304);
+            this.BtEditar.Name = "BtEditar";
+            this.BtEditar.Size = new System.Drawing.Size(86, 23);
+            this.BtEditar.TabIndex = 39;
+            this.BtEditar.Text = "EDITAR";
+            this.BtEditar.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // BtExcluirPedido
             // 
-            this.button1.Location = new System.Drawing.Point(907, 236);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(86, 23);
-            this.button1.TabIndex = 37;
-            this.button1.Text = "CANCELAR";
-            this.button1.UseVisualStyleBackColor = true;
+            this.BtExcluirPedido.Location = new System.Drawing.Point(907, 333);
+            this.BtExcluirPedido.Name = "BtExcluirPedido";
+            this.BtExcluirPedido.Size = new System.Drawing.Size(86, 23);
+            this.BtExcluirPedido.TabIndex = 38;
+            this.BtExcluirPedido.Text = "EXCLUIR";
+            this.BtExcluirPedido.UseVisualStyleBackColor = true;
+            this.BtExcluirPedido.Click += new System.EventHandler(this.BtExcluirPedido_Click);
+            // 
+            // BtCancelar
+            // 
+            this.BtCancelar.Enabled = false;
+            this.BtCancelar.Location = new System.Drawing.Point(907, 236);
+            this.BtCancelar.Name = "BtCancelar";
+            this.BtCancelar.Size = new System.Drawing.Size(86, 23);
+            this.BtCancelar.TabIndex = 37;
+            this.BtCancelar.Text = "CANCELAR";
+            this.BtCancelar.UseVisualStyleBackColor = true;
+            this.BtCancelar.Click += new System.EventHandler(this.BtCancelar_Click);
             // 
             // FormPedido
             // 
@@ -646,12 +677,12 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.ColumnHeader descricao;
         private System.Windows.Forms.ColumnHeader quantidade;
         private System.Windows.Forms.ColumnHeader subtotal;
-        private System.Windows.Forms.Button BtAdicionar;
+        private System.Windows.Forms.Button BtAdicionarProduto;
         private System.Windows.Forms.ListView LwProdutos;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox TbTotal;
         private System.Windows.Forms.ColumnHeader valorUni;
-        private System.Windows.Forms.Button BtRemover;
+        private System.Windows.Forms.Button BtExcluirProduto;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox TbCupom;
@@ -675,10 +706,11 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.ColumnHeader Cliente;
         private System.Windows.Forms.ColumnHeader Whatsapp;
         private System.Windows.Forms.ColumnHeader Total;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button BtExcluir;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button BtEditar;
+        private System.Windows.Forms.Button BtExcluirPedido;
+        private System.Windows.Forms.Button BtCancelar;
+        private System.Windows.Forms.Button BtAdicionarPedido;
+        private System.Windows.Forms.Button BtGerarPdf;
     }
 }
 

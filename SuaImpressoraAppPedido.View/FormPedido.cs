@@ -16,7 +16,7 @@ namespace SuaImpressoraAppPedido.View
     public partial class FormPedido : Form
     {
         public ListView LwP { get { return LwProdutos; } }
-        public TextBox TbS01 { get { return TbTotal; } }
+        private string op { get; set; }
         public FormPedido()
         {
             InitializeComponent();
@@ -62,13 +62,13 @@ namespace SuaImpressoraAppPedido.View
             TbTotal.Text = total.ToString("N2");
         }
 
-        private void BtAdicionar_Click(object sender, EventArgs e)
+        private void BtAdicionarProduto_Click(object sender, EventArgs e)
         {
             FormProduto fp = new FormProduto(this);
             fp.ShowDialog();
         }
 
-        private void BtRemover_Click(object sender, EventArgs e)
+        private void BtExcluirProduto_Click(object sender, EventArgs e)
         {
             LwProdutos.Items.RemoveAt(LwProdutos.SelectedIndices[0]);
             AtualizarTotal();
@@ -90,10 +90,10 @@ namespace SuaImpressoraAppPedido.View
             }
         }
 
-        private void BtSalvar_Click(object sender, EventArgs e)
+        private void AdicionarPedido()
         {
             List<PedidoItem> pedidoItems = new List<PedidoItem>();
-            string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().SingleOrDefault(r => r.Checked).Text;
+            string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().Single(r => r.Checked).Text;
             int tipoPagemento = tipoPagamentoStr.Equals("PIX") ? 1 : tipoPagamentoStr.Equals("DINHEIRO") ? 2 : 3;
 
             foreach (ListViewItem item in LwProdutos.Items)
@@ -133,14 +133,16 @@ namespace SuaImpressoraAppPedido.View
                 {
                     contexto.SaveChanges();
                     LimparCampos();
+                    DesativarBotaoSalvarCancelarEAtivarBotaoAdicionarEditarExcluirGerarPdf();
                     MessageBox.Show("Pedido adicionado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                } 
+                }
                 finally
                 {
+                    this.op = "";
                     AdicionarDadosNaListaPedidos();
                 }
             }
@@ -162,7 +164,7 @@ namespace SuaImpressoraAppPedido.View
             if (LwPedidos.SelectedItems.Count > 0)
             {
                 LimparCampos();
-                long id = int.Parse(LwPedidos.SelectedItems[0].SubItems[0].Text);
+                long id = long.Parse(LwPedidos.SelectedItems[0].SubItems[0].Text);
                 using (EfContext contexto = new EfContext())
                 {
                     Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
@@ -215,7 +217,7 @@ namespace SuaImpressoraAppPedido.View
             }
         }
 
-        private void BtExcluir_Click(object sender, EventArgs e)
+        private void BtExcluirPedido_Click(object sender, EventArgs e)
         {
             DialogResult dialog = MessageBox.Show("Deseja realmente excluir", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
@@ -251,6 +253,97 @@ namespace SuaImpressoraAppPedido.View
             }
         }
 
+        private void BtAdicionarPedido_Click(object sender, EventArgs e)
+        {
+            this.op = "adicionar";
+            LimparCampos();
+            AtivarCamposParaAdicionarOuEditar();
+            AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf();
+        }
+
+        private void BtSalvar_Click(object sender, EventArgs e)
+        {
+            if (this.op.Equals("adicionar"))
+            {
+                AdicionarPedido();
+            }
+            else if (this.op == "editar")
+            {
+
+            }
+        }
+
+        private void BtCancelar_Click(object sender, EventArgs e)
+        {
+            this.op = "";
+            LimparCampos();
+            DesativarBotaoSalvarCancelarEAtivarBotaoAdicionarEditarExcluirGerarPdf();
+            DesativarCamposParaAdicionarOuEditar();
+            AdicionarDadosNaListaPedidos();
+        }
+
+        private void AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf()
+        {
+            BtSalvar.Enabled = true;
+            BtCancelar.Enabled = true;
+            BtAdicionarPedido.Enabled = false;
+            BtEditar.Enabled = false;
+            BtExcluirPedido.Enabled = false;
+            BtGerarPdf.Enabled = false;
+        }
+
+        private void DesativarBotaoSalvarCancelarEAtivarBotaoAdicionarEditarExcluirGerarPdf()
+        {
+            BtSalvar.Enabled = false;
+            BtCancelar.Enabled = false;
+            BtAdicionarPedido.Enabled = true;
+            BtEditar.Enabled = true;
+            BtExcluirPedido.Enabled = true;
+            BtGerarPdf.Enabled = true;
+        }
+
+        private void AtivarCamposParaAdicionarOuEditar()
+        {
+            MkDataPedido.Enabled = true;
+            MkDataEntrega.Enabled = true;
+            TbCliente.Enabled = true;
+            MkWhatsapp.Enabled = true;
+            TbInstagram.Enabled = true;
+            TbEmail.Enabled = true;
+            RtbEnderecoDeEntrega.Enabled = true;
+            TbPontoDeReferencia.Enabled = true;
+            RtbObservacaoDoPedido.Enabled = true;
+            BtAdicionarProduto.Enabled = true;
+            BtExcluirProduto.Enabled = true;
+            LwProdutos.Enabled = true;
+            TbCupom.Enabled = true;
+            TbFrete.Enabled = true;
+            RbPix.Enabled = true;
+            RbDinheiro.Enabled = true;
+            RbCartao.Enabled = true;
+        }
+
+        private void DesativarCamposParaAdicionarOuEditar()
+        {
+            MkDataPedido.Enabled = false;
+            MkDataEntrega.Enabled = false;
+            TbCliente.Enabled = false;
+            MkWhatsapp.Enabled = false;
+            TbInstagram.Enabled = false;
+            TbEmail.Enabled = false;
+            RtbEnderecoDeEntrega.Enabled = false;
+            TbPontoDeReferencia.Enabled = false;
+            RtbObservacaoDoPedido.Enabled = false;
+            BtAdicionarProduto.Enabled = false;
+            BtExcluirProduto.Enabled = false;
+            LwProdutos.Enabled = false;
+            TbCupom.Enabled = false;
+            TbFrete.Enabled = false;
+            RbPix.Enabled = false;
+            RbDinheiro.Enabled = false;
+            RbCartao.Enabled = false;
+        }
+
         private void LimparCampos()
         {
             TbNumeroPedido.Clear();
@@ -267,7 +360,7 @@ namespace SuaImpressoraAppPedido.View
             TbCupom.Clear();
             TbFrete.Clear();
             TbTotal.Clear();
-            RbPix.Checked = false;
+            RbPix.Checked = true;
             RbDinheiro.Checked = false;
             RbCartao.Checked = false;
             TbTroco.Clear();
