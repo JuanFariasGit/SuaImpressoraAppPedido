@@ -1,0 +1,10 @@
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\bin\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.deps.json
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\bin\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.dll
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\bin\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.pdb
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.csproj.AssemblyReference.cache
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.AssemblyInfoInputs.cache
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.AssemblyInfo.cs
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.csproj.CoreCompileInputs.cache
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.dll
+C:\Users\Juan Farias\projetos\C#\SuaImpressoraAppPedido\SuaImpressoraAppPedido.Enum\obj\Release\netcoreapp3.1\SuaImpressoraAppPedido.Enum.pdb

@@ -133,8 +133,70 @@ namespace SuaImpressoraAppPedido.View
                 {
                     contexto.SaveChanges();
                     LimparCampos();
+                    DesativarCamposParaAdicionarOuEditar();
                     DesativarBotaoSalvarCancelarEAtivarBotaoAdicionarEditarExcluirGerarPdf();
                     MessageBox.Show("Pedido adicionado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    this.op = "";
+                    AdicionarDadosNaListaPedidos();
+                }
+            }
+        }
+
+        private void EditarPedido()
+        {
+            long id = long.Parse(LwPedidos.SelectedItems[0].SubItems[0].Text);
+            string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().Single(r => r.Checked).Text;
+            int tipoPagemento = tipoPagamentoStr.Equals("PIX") ? 1 : tipoPagamentoStr.Equals("DINHEIRO") ? 2 : 3;
+
+            using (EfContext contexto = new EfContext())
+            {
+                List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
+
+                foreach (PedidoItem item in pedidoItems)
+                {
+                    contexto.PedidoItems.Remove(item);
+                }
+
+                foreach (ListViewItem item in LwProdutos.Items)
+                {
+                    pedidoItems.Add(new PedidoItem
+                    {
+                        Descricao = item.SubItems[0].Text,
+                        PrecoUnitario = double.Parse(item.SubItems[1].Text.Split(" ")[1]),
+                        Quantidade = int.Parse(item.SubItems[2].Text)
+                    });
+                }
+
+                Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
+                pedido.DataDeEntrega = MkDataEntrega.Text;
+                pedido.DataDoPedido = MkDataPedido.Text;
+                pedido.Cliente = TbCliente.Text;
+                pedido.Whatsapp = MkWhatsapp.Text;
+                pedido.Instagram = TbInstagram.Text;
+                pedido.Email = TbEmail.Text;
+                pedido.EnderecoDeEntrega = RtbEnderecoDeEntrega.Text;
+                pedido.PontoDeReferencia = TbPontoDeReferencia.Text;
+                pedido.Observacao = RtbObservacaoDoPedido.Text;
+                pedido.Cupom = !String.IsNullOrEmpty(TbCupom.Text) ? double.Parse(TbCupom.Text) : 0.00;
+                pedido.Frete = !String.IsNullOrEmpty(TbFrete.Text) ? double.Parse(TbFrete.Text) : 0.00;
+                pedido.Total = !String.IsNullOrEmpty(TbTotal.Text) ? double.Parse(TbTotal.Text) : 0.00;
+                pedido.Troco = !String.IsNullOrEmpty(TbTroco.Text) ? double.Parse(TbTroco.Text) : 0.00;
+                pedido.TipoPagamento = (TipoPagamento)tipoPagemento;
+                pedido.PedidoItems = pedidoItems;
+
+                try
+                {
+                    contexto.SaveChanges();
+                    DesativarCamposParaAdicionarOuEditar();
+                    DesativarBotaoSalvarCancelarEAtivarBotaoAdicionarEditarExcluirGerarPdf();
+                    MessageBox.Show("Pedido atualizado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
@@ -261,6 +323,13 @@ namespace SuaImpressoraAppPedido.View
             AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf();
         }
 
+        private void BtEditar_Click(object sender, EventArgs e)
+        {
+            this.op = "editar";
+            AtivarCamposParaAdicionarOuEditar();
+            AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf();
+        }
+
         private void BtSalvar_Click(object sender, EventArgs e)
         {
             if (this.op.Equals("adicionar"))
@@ -269,7 +338,7 @@ namespace SuaImpressoraAppPedido.View
             }
             else if (this.op == "editar")
             {
-
+                EditarPedido();
             }
         }
 

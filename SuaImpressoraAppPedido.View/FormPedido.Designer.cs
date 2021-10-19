@@ -610,6 +610,7 @@ namespace SuaImpressoraAppPedido.View
             this.BtEditar.TabIndex = 39;
             this.BtEditar.Text = "EDITAR";
             this.BtEditar.UseVisualStyleBackColor = true;
+            this.BtEditar.Click += new System.EventHandler(this.BtEditar_Click);
             // 
             // BtExcluirPedido
             // 
