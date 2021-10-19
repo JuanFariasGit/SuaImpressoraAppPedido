@@ -23,7 +23,7 @@ namespace SuaImpressoraAppPedido.View
 
             items[0] = TbDescricao.Text.Trim();
             items[1] = "R$ " + TbPrecoUnitario.Text.Trim();
-            items[2] = TbQuantidade.Text.Trim();
+            items[2] = TbQuantidade.Text;
             items[3] = "R$ " + (double.Parse(TbPrecoUnitario.Text) * int.Parse(TbQuantidade.Text)).ToString("N2");
 
             ListViewItem listViewItem = new ListViewItem(items);

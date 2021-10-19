@@ -71,6 +71,8 @@ namespace SuaImpressoraAppPedido.View
             this.GbTipoPagamento = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Lista = new System.Windows.Forms.TabPage();
+            this.label13 = new System.Windows.Forms.Label();
+            this.TbPesquisarPedido = new System.Windows.Forms.TextBox();
             this.LwPedidos = new System.Windows.Forms.ListView();
             this.PedidoNumero = new System.Windows.Forms.ColumnHeader();
             this.DataDoPedido = new System.Windows.Forms.ColumnHeader();
@@ -471,19 +473,39 @@ namespace SuaImpressoraAppPedido.View
             this.tabControl1.Location = new System.Drawing.Point(4, 11);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1042, 544);
+            this.tabControl1.Size = new System.Drawing.Size(1042, 588);
             this.tabControl1.TabIndex = 37;
             // 
             // Lista
             // 
+            this.Lista.Controls.Add(this.label13);
+            this.Lista.Controls.Add(this.TbPesquisarPedido);
             this.Lista.Controls.Add(this.LwPedidos);
             this.Lista.Location = new System.Drawing.Point(4, 24);
             this.Lista.Name = "Lista";
             this.Lista.Padding = new System.Windows.Forms.Padding(3);
-            this.Lista.Size = new System.Drawing.Size(1034, 516);
+            this.Lista.Size = new System.Drawing.Size(1034, 560);
             this.Lista.TabIndex = 1;
             this.Lista.Text = "Lista";
             this.Lista.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(172, 31);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 15);
+            this.label13.TabIndex = 2;
+            this.label13.Text = "PESQUISAR:";
+            // 
+            // TbPesquisarPedido
+            // 
+            this.TbPesquisarPedido.Location = new System.Drawing.Point(248, 28);
+            this.TbPesquisarPedido.Name = "TbPesquisarPedido";
+            this.TbPesquisarPedido.PlaceholderText = "NOME DO CLIENTE (PODE SER O PRIMEIRO NOME OU COMPLETO)";
+            this.TbPesquisarPedido.Size = new System.Drawing.Size(538, 23);
+            this.TbPesquisarPedido.TabIndex = 1;
+            this.TbPesquisarPedido.TextChanged += new System.EventHandler(this.TbPesquisarPedido_TextChanged);
             // 
             // LwPedidos
             // 
@@ -496,7 +518,7 @@ namespace SuaImpressoraAppPedido.View
             this.Total});
             this.LwPedidos.FullRowSelect = true;
             this.LwPedidos.HideSelection = false;
-            this.LwPedidos.Location = new System.Drawing.Point(60, 13);
+            this.LwPedidos.Location = new System.Drawing.Point(67, 57);
             this.LwPedidos.MultiSelect = false;
             this.LwPedidos.Name = "LwPedidos";
             this.LwPedidos.Size = new System.Drawing.Size(913, 497);
@@ -578,7 +600,7 @@ namespace SuaImpressoraAppPedido.View
             this.Dados.Location = new System.Drawing.Point(4, 24);
             this.Dados.Name = "Dados";
             this.Dados.Padding = new System.Windows.Forms.Padding(3);
-            this.Dados.Size = new System.Drawing.Size(1034, 516);
+            this.Dados.Size = new System.Drawing.Size(1034, 560);
             this.Dados.TabIndex = 0;
             this.Dados.Text = "Dados";
             this.Dados.UseVisualStyleBackColor = true;
@@ -637,7 +659,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1049, 559);
+            this.ClientSize = new System.Drawing.Size(1049, 604);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -649,6 +671,7 @@ namespace SuaImpressoraAppPedido.View
             this.GbTipoPagamento.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.Lista.ResumeLayout(false);
+            this.Lista.PerformLayout();
             this.Dados.ResumeLayout(false);
             this.Dados.PerformLayout();
             this.ResumeLayout(false);
@@ -712,6 +735,8 @@ namespace SuaImpressoraAppPedido.View
         private System.Windows.Forms.Button BtCancelar;
         private System.Windows.Forms.Button BtAdicionarPedido;
         private System.Windows.Forms.Button BtGerarPdf;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox TbPesquisarPedido;
     }
 }
 

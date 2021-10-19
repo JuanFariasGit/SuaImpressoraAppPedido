@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using SuaImpressoraAppPedido.Model;
 using SuaImpressoraAppPedido.Enum;
+using System.Data.Entity;
 
 namespace SuaImpressoraAppPedido.View
 {
@@ -46,6 +47,31 @@ namespace SuaImpressoraAppPedido.View
                 }
             }
         }
+
+        private void TbPesquisarPedido_TextChanged(object sender, EventArgs e)
+        {
+            string vp = TbPesquisarPedido.Text;
+            using (EfContext contexto = new EfContext())
+            {
+                LwPedidos.Items.Clear();
+                List<Pedido> pedidos = contexto.Pedidos.Where(p => p.Cliente.Contains(vp) || p.Cliente.ToLower().Contains(vp) || p.Cliente.ToUpper().Contains(vp)).ToList();
+                foreach (Pedido pedido in pedidos)
+                {
+                    String[] items = new String[6];
+
+                    items[0] = pedido.Id.ToString();
+                    items[1] = pedido.DataDoPedido;
+                    items[2] = pedido.DataDeEntrega;
+                    items[3] = pedido.Cliente;
+                    items[4] = pedido.Whatsapp;
+                    items[5] = "R$ " + pedido.Total.ToString("N2");
+
+                    ListViewItem listViewItem = new ListViewItem(items);
+                    LwPedidos.Items.Add(listViewItem);
+                }
+            }
+        }
+
         public void AtualizarTotal()
         {
             double total = 0.00;
@@ -112,13 +138,13 @@ namespace SuaImpressoraAppPedido.View
                 {
                     DataDeEntrega = MkDataEntrega.Text,
                     DataDoPedido = MkDataPedido.Text,
-                    Cliente = TbCliente.Text,
+                    Cliente = TbCliente.Text.Trim(),
                     Whatsapp = MkWhatsapp.Text,
-                    Instagram = TbInstagram.Text,
-                    Email = TbEmail.Text,
-                    EnderecoDeEntrega = RtbEnderecoDeEntrega.Text,
-                    PontoDeReferencia = TbPontoDeReferencia.Text,
-                    Observacao = RtbObservacaoDoPedido.Text,
+                    Instagram = TbInstagram.Text.Trim(),
+                    Email = TbEmail.Text.Trim(),
+                    EnderecoDeEntrega = RtbEnderecoDeEntrega.Text.Trim(),
+                    PontoDeReferencia = TbPontoDeReferencia.Text.Trim(),
+                    Observacao = RtbObservacaoDoPedido.Text.Trim(),
                     Cupom = !String.IsNullOrEmpty(TbCupom.Text) ? double.Parse(TbCupom.Text) : 0.00,
                     Frete = !String.IsNullOrEmpty(TbFrete.Text) ? double.Parse(TbFrete.Text) : 0.00,
                     Total = !String.IsNullOrEmpty(TbTotal.Text) ? double.Parse(TbTotal.Text) : 0.00,
@@ -177,13 +203,13 @@ namespace SuaImpressoraAppPedido.View
                 Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
                 pedido.DataDeEntrega = MkDataEntrega.Text;
                 pedido.DataDoPedido = MkDataPedido.Text;
-                pedido.Cliente = TbCliente.Text;
+                pedido.Cliente = TbCliente.Text.Trim();
                 pedido.Whatsapp = MkWhatsapp.Text;
-                pedido.Instagram = TbInstagram.Text;
-                pedido.Email = TbEmail.Text;
-                pedido.EnderecoDeEntrega = RtbEnderecoDeEntrega.Text;
-                pedido.PontoDeReferencia = TbPontoDeReferencia.Text;
-                pedido.Observacao = RtbObservacaoDoPedido.Text;
+                pedido.Instagram = TbInstagram.Text.Trim();
+                pedido.Email = TbEmail.Text.Trim();
+                pedido.EnderecoDeEntrega = RtbEnderecoDeEntrega.Text.Trim();
+                pedido.PontoDeReferencia = TbPontoDeReferencia.Text.Trim();
+                pedido.Observacao = RtbObservacaoDoPedido.Text.Trim();
                 pedido.Cupom = !String.IsNullOrEmpty(TbCupom.Text) ? double.Parse(TbCupom.Text) : 0.00;
                 pedido.Frete = !String.IsNullOrEmpty(TbFrete.Text) ? double.Parse(TbFrete.Text) : 0.00;
                 pedido.Total = !String.IsNullOrEmpty(TbTotal.Text) ? double.Parse(TbTotal.Text) : 0.00;
@@ -206,6 +232,43 @@ namespace SuaImpressoraAppPedido.View
                 {
                     this.op = "";
                     AdicionarDadosNaListaPedidos();
+                }
+            }
+        }
+
+        private void ExcluirPedido()
+        {
+            DialogResult dialog = MessageBox.Show("Deseja realmente excluir", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dialog == DialogResult.Yes)
+            {
+                using (EfContext contexto = new EfContext())
+                {
+                    long id = long.Parse(TbNumeroPedido.Text);
+                    Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
+                    List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
+
+                    contexto.Pedidos.Remove(pedido);
+
+                    foreach (PedidoItem item in pedidoItems)
+                    {
+                        contexto.PedidoItems.Remove(item);
+                    }
+
+                    try
+                    {
+                        contexto.SaveChanges();
+                        LimparCampos();
+                        MessageBox.Show("Pedido excluido com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    finally
+                    {
+                        AdicionarDadosNaListaPedidos();
+                    }
                 }
             }
         }
@@ -281,37 +344,13 @@ namespace SuaImpressoraAppPedido.View
 
         private void BtExcluirPedido_Click(object sender, EventArgs e)
         {
-            DialogResult dialog = MessageBox.Show("Deseja realmente excluir", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (dialog == DialogResult.Yes) {
-                using (EfContext contexto = new EfContext())
-                {
-                    long id = long.Parse(TbNumeroPedido.Text);
-                    Pedido pedido = contexto.Pedidos.Single(p => p.Id == id);
-                    List<PedidoItem> pedidoItems = contexto.PedidoItems.Where(p => p.PedidoId == id).ToList();
-
-                    contexto.Pedidos.Remove(pedido);
-
-                    foreach (PedidoItem item in pedidoItems)
-                    {
-                        contexto.PedidoItems.Remove(item);
-                    }
-
-                    try
-                    {
-                        contexto.SaveChanges();
-                        LimparCampos();
-                        MessageBox.Show("Pedido excluido com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    finally
-                    {
-                        AdicionarDadosNaListaPedidos();
-                    }
-                }
+            if (TbNumeroPedido.Text.Length > 0)
+            {
+                ExcluirPedido();
+            }
+            else
+            {
+                MessageBox.Show("Selecione o pedido que deseja excluir", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -325,9 +364,16 @@ namespace SuaImpressoraAppPedido.View
 
         private void BtEditar_Click(object sender, EventArgs e)
         {
-            this.op = "editar";
-            AtivarCamposParaAdicionarOuEditar();
-            AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf();
+            if (TbNumeroPedido.Text.Length > 0)
+            {
+                this.op = "editar";
+                AtivarCamposParaAdicionarOuEditar();
+                AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf();
+            } 
+            else
+            {
+                MessageBox.Show("Selecione o pedido que deseja editar", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void BtSalvar_Click(object sender, EventArgs e)
