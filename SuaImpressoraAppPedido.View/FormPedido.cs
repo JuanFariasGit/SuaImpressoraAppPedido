@@ -151,7 +151,7 @@ namespace SuaImpressoraAppPedido.View
 
         private void EditarPedido()
         {
-            long id = long.Parse(LwPedidos.SelectedItems[0].SubItems[0].Text);
+            long id = long.Parse(TbNumeroPedido.Text);
             string tipoPagamentoStr = GbTipoPagamento.Controls.OfType<RadioButton>().Single(r => r.Checked).Text;
             int tipoPagemento = tipoPagamentoStr.Equals("PIX") ? 1 : tipoPagamentoStr.Equals("DINHEIRO") ? 2 : 3;
 
@@ -336,7 +336,7 @@ namespace SuaImpressoraAppPedido.View
             {
                 AdicionarPedido();
             }
-            else if (this.op == "editar")
+            else if (this.op.Equals("editar"))
             {
                 EditarPedido();
             }
