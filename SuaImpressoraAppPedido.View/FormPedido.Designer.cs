@@ -429,7 +429,7 @@ namespace SuaImpressoraAppPedido.View
             // BtSalvar
             // 
             this.BtSalvar.Enabled = false;
-            this.BtSalvar.Location = new System.Drawing.Point(907, 207);
+            this.BtSalvar.Location = new System.Drawing.Point(913, 207);
             this.BtSalvar.Name = "BtSalvar";
             this.BtSalvar.Size = new System.Drawing.Size(86, 23);
             this.BtSalvar.TabIndex = 33;
@@ -492,7 +492,7 @@ namespace SuaImpressoraAppPedido.View
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(172, 31);
+            this.label13.Location = new System.Drawing.Point(186, 28);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(70, 15);
             this.label13.TabIndex = 2;
@@ -500,7 +500,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // TbPesquisarPedido
             // 
-            this.TbPesquisarPedido.Location = new System.Drawing.Point(248, 28);
+            this.TbPesquisarPedido.Location = new System.Drawing.Point(262, 25);
             this.TbPesquisarPedido.Name = "TbPesquisarPedido";
             this.TbPesquisarPedido.PlaceholderText = "NOME DO CLIENTE (PODE SER O PRIMEIRO NOME OU COMPLETO)";
             this.TbPesquisarPedido.Size = new System.Drawing.Size(538, 23);
@@ -607,16 +607,17 @@ namespace SuaImpressoraAppPedido.View
             // 
             // BtGerarPdf
             // 
-            this.BtGerarPdf.Location = new System.Drawing.Point(907, 374);
+            this.BtGerarPdf.Location = new System.Drawing.Point(907, 373);
             this.BtGerarPdf.Name = "BtGerarPdf";
-            this.BtGerarPdf.Size = new System.Drawing.Size(86, 23);
+            this.BtGerarPdf.Size = new System.Drawing.Size(99, 23);
             this.BtGerarPdf.TabIndex = 41;
-            this.BtGerarPdf.Text = "GERAR PDF";
+            this.BtGerarPdf.Text = "EXPORTA PDF";
             this.BtGerarPdf.UseVisualStyleBackColor = true;
+            this.BtGerarPdf.Click += new System.EventHandler(this.BtGerarPdf_Click);
             // 
             // BtAdicionarPedido
             // 
-            this.BtAdicionarPedido.Location = new System.Drawing.Point(907, 277);
+            this.BtAdicionarPedido.Location = new System.Drawing.Point(913, 277);
             this.BtAdicionarPedido.Name = "BtAdicionarPedido";
             this.BtAdicionarPedido.Size = new System.Drawing.Size(86, 23);
             this.BtAdicionarPedido.TabIndex = 40;
@@ -626,7 +627,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // BtEditar
             // 
-            this.BtEditar.Location = new System.Drawing.Point(907, 304);
+            this.BtEditar.Location = new System.Drawing.Point(913, 304);
             this.BtEditar.Name = "BtEditar";
             this.BtEditar.Size = new System.Drawing.Size(86, 23);
             this.BtEditar.TabIndex = 39;
@@ -636,7 +637,7 @@ namespace SuaImpressoraAppPedido.View
             // 
             // BtExcluirPedido
             // 
-            this.BtExcluirPedido.Location = new System.Drawing.Point(907, 333);
+            this.BtExcluirPedido.Location = new System.Drawing.Point(913, 333);
             this.BtExcluirPedido.Name = "BtExcluirPedido";
             this.BtExcluirPedido.Size = new System.Drawing.Size(86, 23);
             this.BtExcluirPedido.TabIndex = 38;
@@ -647,7 +648,7 @@ namespace SuaImpressoraAppPedido.View
             // BtCancelar
             // 
             this.BtCancelar.Enabled = false;
-            this.BtCancelar.Location = new System.Drawing.Point(907, 236);
+            this.BtCancelar.Location = new System.Drawing.Point(913, 236);
             this.BtCancelar.Name = "BtCancelar";
             this.BtCancelar.Size = new System.Drawing.Size(86, 23);
             this.BtCancelar.TabIndex = 37;

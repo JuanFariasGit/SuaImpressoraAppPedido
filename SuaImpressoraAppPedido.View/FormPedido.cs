@@ -11,6 +11,10 @@ using System.Text.RegularExpressions;
 using SuaImpressoraAppPedido.Model;
 using SuaImpressoraAppPedido.Enum;
 using System.Data.Entity;
+using iTextSharp.text;
+using System.IO;
+using iTextSharp.text.pdf;
+using iTextSharp.tool.xml;
 
 namespace SuaImpressoraAppPedido.View
 {
@@ -395,6 +399,77 @@ namespace SuaImpressoraAppPedido.View
             DesativarBotaoSalvarCancelarEAtivarBotaoAdicionarEditarExcluirGerarPdf();
             DesativarCamposParaAdicionarOuEditar();
             AdicionarDadosNaListaPedidos();
+        }
+
+        private void BtGerarPdf_Click(object sender, EventArgs e)
+        {
+            EncodingProvider ep = CodePagesEncodingProvider.Instance;
+            Encoding.RegisterProvider(ep);
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Pdf File |*.pdf";
+           
+            string htmlStr = Properties.Resources.relatorio.ToString();
+            htmlStr = htmlStr.Replace("@NUMEROPEDIDO", TbNumeroPedido.Text);
+            htmlStr = htmlStr.Replace("@DATADOPEDIDO", MkDataPedido.Text);
+            htmlStr = htmlStr.Replace("@DATADEENTREGA", MkDataEntrega.Text);
+            htmlStr = htmlStr.Replace("@CLIENTE", TbCliente.Text);
+            htmlStr = htmlStr.Replace("@WHATSAPP", MkWhatsapp.Text);
+            htmlStr = htmlStr.Replace("@INSTAGRAM", TbInstagram.Text);
+            htmlStr = htmlStr.Replace("@EMAIL", TbEmail.Text);
+            htmlStr = htmlStr.Replace("@ENDERECODEENTREGA", RtbEnderecoDeEntrega.Text);
+            htmlStr = htmlStr.Replace("@PONTODEREFERENCIA", TbPontoDeReferencia.Text);
+
+            string produtos = "";
+            foreach (ListViewItem item in LwProdutos.Items)
+            {
+                produtos += "<tr style=\"height: 30px\">";
+                produtos += "<td align=\"center\">" + item.SubItems[0].Text + "</td>";
+                produtos += "<td align=\"center\">" + item.SubItems[1].Text + "</td>";
+                produtos += "<td align=\"center\">" + item.SubItems[2].Text + "</td>";
+                produtos += "<td align=\"center\">" + item.SubItems[3].Text + "</td>";
+                produtos += "</tr>";
+            }
+
+            string cupom = !String.IsNullOrEmpty(TbCupom.Text) ? TbCupom.Text : "0,00";
+            string frete = !String.IsNullOrEmpty(TbFrete.Text) ? TbFrete.Text : "0,00";
+            string total = !String.IsNullOrEmpty(TbTotal.Text) ? TbTotal.Text : "0,00";
+            string troco = !String.IsNullOrEmpty(TbTroco.Text) ? TbTroco.Text : "0,00";
+
+            htmlStr = htmlStr.Replace("@PRODUTOS", produtos);
+            htmlStr = htmlStr.Replace("@CUPOM", "R$ " + cupom);
+            htmlStr = htmlStr.Replace("@FRETE", "R$ " + frete);
+            htmlStr = htmlStr.Replace("@TOTAL", "R$ " + total);
+
+            htmlStr = htmlStr.Replace("@OBSERVACAODOPEDIDO", RtbObservacaoDoPedido.Text);
+            htmlStr = htmlStr.Replace("@TIPOPAGAMENTO", GbTipoPagamento.Controls.OfType<RadioButton>().Single(r => r.Checked).Text);
+            htmlStr = htmlStr.Replace("@TROCO", "R$ " + troco);
+
+            if (sfd.ShowDialog().Equals(DialogResult.OK))
+            {
+                try
+                {
+                    using (FileStream arquivo = new FileStream(sfd.FileName, FileMode.Create))
+                    {
+                        Document doc = new Document(PageSize.A4, 25, 25, 25, 25);
+                        PdfWriter wri = PdfWriter.GetInstance(doc, arquivo);
+
+                        doc.Open();
+
+                        using (StringReader sr = new StringReader(htmlStr))
+                        {
+                            XMLWorkerHelper.GetInstance().ParseXHtml(wri, doc, sr);
+                        }
+
+                        doc.Close();
+                    }
+                    MessageBox.Show("PDF exportado com sucesso", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                } 
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro: " + ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void AtivarBotaoSalvarCancelarEDesativarBotaoAdicionarEditarExcluirGerarPdf()

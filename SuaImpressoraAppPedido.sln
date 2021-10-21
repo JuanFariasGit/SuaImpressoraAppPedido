@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuaImpressoraAppPedido.Model", "SuaImpressoraAppPedido.Model\SuaImpressoraAppPedido.Model.csproj", "{7492FB85-A678-4C06-AF98-351BD1DF6D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuaImpressoraAppPedido.Model", "SuaImpressoraAppPedido.Model\SuaImpressoraAppPedido.Model.csproj", "{7492FB85-A678-4C06-AF98-351BD1DF6D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuaImpressoraAppPedido.View", "SuaImpressoraAppPedido.View\SuaImpressoraAppPedido.View.csproj", "{795301C3-A47B-443B-9F7B-A766FB3C039A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuaImpressoraAppPedido.View", "SuaImpressoraAppPedido.View\SuaImpressoraAppPedido.View.csproj", "{795301C3-A47B-443B-9F7B-A766FB3C039A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuaImpressoraAppPedido.Enum", "SuaImpressoraAppPedido.Enum\SuaImpressoraAppPedido.Enum.csproj", "{1F9ED8A2-071B-4DB6-8FFB-02BC569E0D54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuaImpressoraAppPedido.Enum", "SuaImpressoraAppPedido.Enum\SuaImpressoraAppPedido.Enum.csproj", "{1F9ED8A2-071B-4DB6-8FFB-02BC569E0D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuaImpressoraAppPedido.ViewTest", "SuaImpressoraAppPedido.ViewTest\SuaImpressoraAppPedido.ViewTest.csproj", "{9C09FD28-843D-42EF-BF3D-7B63C4A3BCBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{1F9ED8A2-071B-4DB6-8FFB-02BC569E0D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9ED8A2-071B-4DB6-8FFB-02BC569E0D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9ED8A2-071B-4DB6-8FFB-02BC569E0D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C09FD28-843D-42EF-BF3D-7B63C4A3BCBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C09FD28-843D-42EF-BF3D-7B63C4A3BCBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C09FD28-843D-42EF-BF3D-7B63C4A3BCBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C09FD28-843D-42EF-BF3D-7B63C4A3BCBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>RELATÓRIO PEDIDO</title>
+    <style>
+	table.border th {
+          border: 1px solid black;   	
+	}
+
+	table.border td {
+          border: 1px solid black;   	
+	}
+    </style>
+</head>
+<body>
+    <table style="width: 100%">
+        <tr style="height: 50px">
+            <td style="width: 50%">
+                <table>
+                    <tr><td><strong>PEDIDO Nº: </strong>@NUMEROPEDIDO</td></tr>
+                    <tr><td><strong>DATA DO PEDIDO: </strong>@DATADOPEDIDO</td></tr>
+                    <tr><td><strong>DATA DE ENTREGA: </strong>@DATADEENTREGA</td></tr>
+                </table>
+            </td>
+            <td style="width: 50%"> 
+                <table>
+                    <tr><td><img src="" title="LOGO DA EMPRESA" /></td></tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+               <table>
+                    <tr>
+                        <td>
+                            <strong>CLIENTE: </strong>@CLIENTE
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>WHATSAPP: </strong>@WHATSAPP</td>
+                    </tr>
+                    <tr><td><strong>INSTAGRAM: </strong>@INSTAGRAM</td></tr>
+                    <tr>
+                        <td>
+                            <strong>E-MAIL: </strong>@EMAIL
+                        </td>
+                    </tr>
+               </table>
+           </td>
+        </tr>
+        <tr style="height: 50px">
+            <td colspan="2">
+               <table>
+                    <tr><td><strong>ENDEREÇO DE ENTREGA:</strong></td></tr>
+                    <tr><td>@ENDERECODEENTREGA</td></tr>
+               </table>
+           </td>
+        </tr>
+        <tr style="height: 50px">
+            <td colspan="2">
+               <table>
+                    <tr><td><strong>PONTO DE REFERÊNCIA:</strong></td></tr>
+                    <tr><td>@PONTODEREFERENCIA</td></tr>
+               </table>
+           </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <table class="border" style="width: 100%; border-collapse: collapse">
+                    <thead style="background-color: #000000; color: #FFFFFF; text-align: center">
+                        <tr style="height: 40px">
+                            <th>DESCRIÇÃO</th>
+                            <th>PREÇO UNI</th>
+                            <th>QT</th>
+                            <th>SUBTOTAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @PRODUTOS
+			<tr style="height: 40px">
+                            <td style="border: 0"></td>
+		            <td style="border: 0"></td>
+                            <td align="center">CUPOM</td>
+		            <td align="center">@CUPOM</td>		
+                        </tr>
+			<tr style="height: 40px">
+                            <td style="border: 0"></td>
+		            <td style="border: 0"></td>
+                            <td align="center">FRETE</td>
+		            <td align="center">@FRETE</td>		
+                        </tr>
+			<tr style="height: 40px">
+                            <td style="border: 0"></td>
+		            <td style="border: 0"></td>
+                            <td align="center">TOTAL</td>
+		            <td align="center">@TOTAL</td>		
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+	<tr style="height: 100px">
+            <td colspan="2">
+               <table>
+                    <tr><td><strong>OBSERVAÇÃO DO PEDIDO:</strong></td></tr>
+                    <tr><td>@OBSERVACAODOPEDIDO</td></tr>
+               </table>
+           </td>
+        </tr>
+        <tr style="height: 50px">
+            <td colspan="2">
+                <table>
+		    <tr>
+                        <td>TIPO DE PAGAMENTO: @TIPOPAGAMENTO</td>
+                    </tr>
+                     <tr>
+                        <td>TROCO: @TROCO</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
