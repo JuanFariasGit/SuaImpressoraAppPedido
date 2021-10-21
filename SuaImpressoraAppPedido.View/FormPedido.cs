@@ -87,8 +87,8 @@ namespace SuaImpressoraAppPedido.View
                 total += double.Parse(item.SubItems[3].Text.Split(" ")[1]);
             }
 
-            total += frete;
             total -= (cupom / 100) * total;
+            total += frete;
             TbTotal.Text = total.ToString("N2");
         }
 

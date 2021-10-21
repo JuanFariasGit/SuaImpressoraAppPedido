@@ -95,7 +95,7 @@ namespace SuaImpressoraAppPedido.View
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 54);
+            this.label1.Location = new System.Drawing.Point(4, 66);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 15);
             this.label1.TabIndex = 0;
@@ -104,7 +104,7 @@ namespace SuaImpressoraAppPedido.View
             // MkDataPedido
             // 
             this.MkDataPedido.Enabled = false;
-            this.MkDataPedido.Location = new System.Drawing.Point(4, 72);
+            this.MkDataPedido.Location = new System.Drawing.Point(4, 84);
             this.MkDataPedido.Mask = "00/00/0000";
             this.MkDataPedido.Name = "MkDataPedido";
             this.MkDataPedido.Size = new System.Drawing.Size(100, 23);
@@ -114,7 +114,7 @@ namespace SuaImpressoraAppPedido.View
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(4, 105);
+            this.label2.Location = new System.Drawing.Point(4, 117);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 15);
             this.label2.TabIndex = 2;
@@ -123,7 +123,7 @@ namespace SuaImpressoraAppPedido.View
             // MkDataEntrega
             // 
             this.MkDataEntrega.Enabled = false;
-            this.MkDataEntrega.Location = new System.Drawing.Point(4, 125);
+            this.MkDataEntrega.Location = new System.Drawing.Point(4, 137);
             this.MkDataEntrega.Mask = "00/00/0000";
             this.MkDataEntrega.Name = "MkDataEntrega";
             this.MkDataEntrega.Size = new System.Drawing.Size(100, 23);
@@ -133,7 +133,7 @@ namespace SuaImpressoraAppPedido.View
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 156);
+            this.label3.Location = new System.Drawing.Point(4, 168);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(54, 15);
             this.label3.TabIndex = 4;
@@ -142,7 +142,7 @@ namespace SuaImpressoraAppPedido.View
             // TbCliente
             // 
             this.TbCliente.Enabled = false;
-            this.TbCliente.Location = new System.Drawing.Point(4, 174);
+            this.TbCliente.Location = new System.Drawing.Point(4, 186);
             this.TbCliente.Name = "TbCliente";
             this.TbCliente.Size = new System.Drawing.Size(331, 23);
             this.TbCliente.TabIndex = 5;
@@ -150,7 +150,7 @@ namespace SuaImpressoraAppPedido.View
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 206);
+            this.label4.Location = new System.Drawing.Point(4, 218);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(71, 15);
             this.label4.TabIndex = 6;
@@ -159,7 +159,7 @@ namespace SuaImpressoraAppPedido.View
             // MkWhatsapp
             // 
             this.MkWhatsapp.Enabled = false;
-            this.MkWhatsapp.Location = new System.Drawing.Point(4, 224);
+            this.MkWhatsapp.Location = new System.Drawing.Point(4, 236);
             this.MkWhatsapp.Mask = "(00) 9 0000-0000";
             this.MkWhatsapp.Name = "MkWhatsapp";
             this.MkWhatsapp.Size = new System.Drawing.Size(100, 23);
@@ -168,7 +168,7 @@ namespace SuaImpressoraAppPedido.View
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 259);
+            this.label5.Location = new System.Drawing.Point(4, 271);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(75, 15);
             this.label5.TabIndex = 8;
@@ -177,7 +177,7 @@ namespace SuaImpressoraAppPedido.View
             // TbInstagram
             // 
             this.TbInstagram.Enabled = false;
-            this.TbInstagram.Location = new System.Drawing.Point(4, 277);
+            this.TbInstagram.Location = new System.Drawing.Point(4, 289);
             this.TbInstagram.Name = "TbInstagram";
             this.TbInstagram.Size = new System.Drawing.Size(167, 23);
             this.TbInstagram.TabIndex = 9;
@@ -185,7 +185,7 @@ namespace SuaImpressoraAppPedido.View
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 308);
+            this.label6.Location = new System.Drawing.Point(4, 320);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(49, 15);
             this.label6.TabIndex = 10;
@@ -194,7 +194,7 @@ namespace SuaImpressoraAppPedido.View
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 362);
+            this.label7.Location = new System.Drawing.Point(4, 374);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(139, 15);
             this.label7.TabIndex = 12;
@@ -203,7 +203,7 @@ namespace SuaImpressoraAppPedido.View
             // RtbEnderecoDeEntrega
             // 
             this.RtbEnderecoDeEntrega.Enabled = false;
-            this.RtbEnderecoDeEntrega.Location = new System.Drawing.Point(4, 384);
+            this.RtbEnderecoDeEntrega.Location = new System.Drawing.Point(4, 396);
             this.RtbEnderecoDeEntrega.Name = "RtbEnderecoDeEntrega";
             this.RtbEnderecoDeEntrega.Size = new System.Drawing.Size(331, 96);
             this.RtbEnderecoDeEntrega.TabIndex = 13;
@@ -284,7 +284,7 @@ namespace SuaImpressoraAppPedido.View
             // TbEmail
             // 
             this.TbEmail.Enabled = false;
-            this.TbEmail.Location = new System.Drawing.Point(4, 326);
+            this.TbEmail.Location = new System.Drawing.Point(4, 338);
             this.TbEmail.Name = "TbEmail";
             this.TbEmail.Size = new System.Drawing.Size(331, 23);
             this.TbEmail.TabIndex = 11;
@@ -440,9 +440,10 @@ namespace SuaImpressoraAppPedido.View
             // TbNumeroPedido
             // 
             this.TbNumeroPedido.Enabled = false;
-            this.TbNumeroPedido.Location = new System.Drawing.Point(4, 28);
+            this.TbNumeroPedido.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.TbNumeroPedido.Location = new System.Drawing.Point(4, 29);
             this.TbNumeroPedido.Name = "TbNumeroPedido";
-            this.TbNumeroPedido.Size = new System.Drawing.Size(167, 23);
+            this.TbNumeroPedido.Size = new System.Drawing.Size(167, 32);
             this.TbNumeroPedido.TabIndex = 35;
             // 
             // label15
